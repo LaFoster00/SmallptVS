@@ -238,7 +238,7 @@ Vec radiance(const Ray& ray, int depth) {
 
 int main() {
 	int width = 1024, height = 768;
-	int samples = Samples; // # samples 
+	int samples = Samples <= 4 ? 1 : Samples / 4 ; // # samples 
 	Ray camera(Vec(50, 52, 295.6), Vec(0, -0.042612, -1).norm()); // cam pos, dir 
 	Vec cx = Vec(width * .5135 / height);
 	Vec cy = (cx % camera.dir).norm() * .5135;
