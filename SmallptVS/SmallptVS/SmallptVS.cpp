@@ -5,7 +5,7 @@
 
 #define M_PI 3.1415926535897932384626433832795
 //#define M_PI 0.5
-#define Samples 100
+#define Samples 1000
 #define Depth 5
 #define MaxDepth 20
 
@@ -98,10 +98,10 @@ struct Sphere {
 	// returns distance, 0 if nohit 
 	double intersect(const Ray& r) const
 	{
-		Vec op = pos - r.origin; // Solve t^2*d.d + 2*t*(o-p).d + (o-p).(o-p)-R^2 = 0 
+		Vec offsetPosition = pos - r.origin; // Solve t^2*d.d + 2*t*(o-p).d + (o-p).(o-p)-R^2 = 0 
 		double t;
-		double eps = 1e-4, b = op.dot(r.dir);
-		double det = b * b - op.dot(op) + rad * rad;
+		double eps = 1e-4, b = offsetPosition.dot(r.dir);
+		double det = b * b - offsetPosition.dot(offsetPosition) + rad * rad;
 
 		if (det < 0)
 		{
